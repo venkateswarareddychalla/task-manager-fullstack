@@ -46,7 +46,7 @@ db.prepare(`
 app.listen(3000, () => console.log("Server running at http://localhost:3000/"));
 
 // Health check
-app.get("/", (req, res) => res.send("API is Working"));
+app.get("/", (req, res) => res.send("API is Working fine"));
 
 // JWT utils
 const JWT_SECRET_KEY = "#JWT_SECRET_KEY";
