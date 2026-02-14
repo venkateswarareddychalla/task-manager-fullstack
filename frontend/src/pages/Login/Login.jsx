@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login({ onLogin }) {
-  const [isLogin, setIsLogin] = useState(true);  const [name, setName] = useState("");
+  const location = useLocation();
+  const isLogin = location.pathname === "/login";
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,26 +12,34 @@ export default function Login({ onLogin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
+
     try {
       const endpoint = isLogin ? "/login" : "/register";
-      const res = await fetch(`https://fullstack-practice-gfa0.onrender.com${endpoint}`, {
+      const body = isLogin
+        ? { email, password }
+        : { name, email, password };
+
+      const res = await fetch(`http://localhost:3000${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify(body),
       });
 
       const data = await res.json();
-      if (data.success){
+
+      if (data.success) {
         const { token } = data;
         localStorage.setItem("token", token);
         onLogin(token);
         navigate("/");
-      }else{
-        setError(data.message);
+      } else {
+        setError(data.message || "An error occurred");
       }
-      
+
     } catch (err) {
-      setError(err. message);
+      console.error("Login/Register error:", err);
+      setError("Network error. Please check if the backend server is running.");
     }
   };
 
@@ -71,8 +81,8 @@ export default function Login({ onLogin }) {
           type="button"
           className="link-button"
           onClick={() => {
-            setIsLogin(!isLogin);
             setError("");
+            navigate(isLogin ? "/register" : "/login");
           }}
         >
           {isLogin ? "Register" : "Login"}

@@ -41,6 +41,18 @@ export default function App() {
           }
         />
 
+        {/* Register Page */}
+        <Route
+          path="/register"
+          element={
+            token ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login onLogin={handleLogin} />
+            )
+          }
+        />
+
         {/* Home Page */}
         <Route
           path="/"

@@ -13,20 +13,20 @@ export default function Update() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("https://fullstack-practice-gfa0.onrender.com/tasks", {
+      const res = await fetch("http://localhost:3000/tasks", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const {tasks} = await res.json();
+      const { tasks } = await res.json();
       const task = tasks.find((t) => t.id === parseInt(id));
       if (task) setForm(task);
     })();
-  }, [id]);
+  }, [id, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const formatted = new Date(form.dueDate).toISOString().split("T")[0];
     // form.dueDate = formatted;
-    await fetch(`https://fullstack-practice-gfa0.onrender.com/tasks/${id}`, {
+    await fetch(`http://localhost:3000/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -52,9 +52,9 @@ export default function Update() {
           value={form.priority}
           onChange={(e) => setForm({ ...form, priority: e.target.value })}
         >
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
         </select>
         <input
           type="date"

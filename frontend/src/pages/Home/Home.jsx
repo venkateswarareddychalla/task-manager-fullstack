@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Home({ onLogout }) {
@@ -6,9 +6,9 @@ export default function Home({ onLogout }) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
-      const url = "https://fullstack-practice-gfa0.onrender.com/tasks";
+      const url = "http://localhost:3000/tasks";
       const options = {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -20,14 +20,14 @@ export default function Home({ onLogout }) {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
   const handleDelete = async (id) => {
-    await fetch(`https://fullstack-practice-gfa0.onrender.com/tasks/${id}`, {
+    await fetch(`http://localhost:3000/tasks/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

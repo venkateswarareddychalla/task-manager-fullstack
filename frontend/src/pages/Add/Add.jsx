@@ -14,12 +14,12 @@ export default function Add() {
     e.preventDefault();
     // const formattedDate = new Date(form.dueDate).toISOString().split("T")[0];
     // form.dueDate = formattedDate;
-    const res = await fetch("https://fullstack-practice-gfa0.onrender.com/tasks", {
+    const res = await fetch("http://localhost:3000/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-        
+
       },
       body: JSON.stringify(form),
     });
