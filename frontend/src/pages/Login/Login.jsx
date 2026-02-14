@@ -20,7 +20,7 @@ export default function Login({ onLogin }) {
         ? { email, password }
         : { name, email, password };
 
-      const res = await fetch(`https://task-manager-backend-zeta-seven.vercel.app${endpoint}`, {
+      const res = await fetch(`https://task-manager-backend-ydyt.onrender.com${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

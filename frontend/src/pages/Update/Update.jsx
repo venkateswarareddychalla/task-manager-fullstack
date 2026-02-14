@@ -13,7 +13,7 @@ export default function Update() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("https://task-manager-backend-zeta-seven.vercel.app/tasks", {
+      const res = await fetch("https://task-manager-backend-ydyt.onrender.com/tasks", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const { tasks } = await res.json();
@@ -26,7 +26,7 @@ export default function Update() {
     e.preventDefault();
     // const formatted = new Date(form.dueDate).toISOString().split("T")[0];
     // form.dueDate = formatted;
-    await fetch(`https://task-manager-backend-zeta-seven.vercel.app/tasks/${id}`, {
+    await fetch(`https://task-manager-backend-ydyt.onrender.com/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

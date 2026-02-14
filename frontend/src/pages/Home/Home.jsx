@@ -8,7 +8,7 @@ export default function Home({ onLogout }) {
 
   const fetchTasks = useCallback(async () => {
     try {
-      const url = "https://task-manager-backend-zeta-seven.vercel.app/tasks";
+      const url = "https://task-manager-backend-ydyt.onrender.com/tasks";
       const options = {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -27,7 +27,7 @@ export default function Home({ onLogout }) {
   }, [fetchTasks]);
 
   const handleDelete = async (id) => {
-    await fetch(`https://task-manager-backend-zeta-seven.vercel.app/tasks/${id}`, {
+    await fetch(`https://task-manager-backend-ydyt.onrender.com/tasks/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

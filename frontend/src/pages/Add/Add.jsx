@@ -14,7 +14,7 @@ export default function Add() {
     e.preventDefault();
     // const formattedDate = new Date(form.dueDate).toISOString().split("T")[0];
     // form.dueDate = formattedDate;
-    const res = await fetch("https://task-manager-backend-zeta-seven.vercel.app/tasks", {
+    const res = await fetch("https://task-manager-backend-ydyt.onrender.com/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
