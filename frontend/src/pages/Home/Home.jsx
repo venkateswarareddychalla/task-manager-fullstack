@@ -8,7 +8,7 @@ export default function Home({ onLogout }) {
 
   const fetchTasks = useCallback(async () => {
     try {
-      const url = "https://task-manager-backend-ydyt.onrender.com/tasks";
+      const url = "http://localhost:3000/tasks";
       const options = {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -27,7 +27,7 @@ export default function Home({ onLogout }) {
   }, [fetchTasks]);
 
   const handleDelete = async (id) => {
-    await fetch(`https://task-manager-backend-ydyt.onrender.com/tasks/${id}`, {
+    await fetch(`http://localhost:3000/tasks/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
